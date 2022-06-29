@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Thirty party libraries
     'django_countries',
+    # 'django_filters',
 ]
 
 MIDDLEWARE = [

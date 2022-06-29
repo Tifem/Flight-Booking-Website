@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load countries %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+    <h3>Hello</h3>
+    <form action="" method='GET'>
+
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <label for="departure_airport">Departure Country</label>
+                <input required type="text" class="form-control" name="departure_airport" id="airport" list="airport-list" value="{% if departure_airport %}{{departure_airport}}{% endif %}"/>
+                    <datalist id="airport-list">
+                      <select id="airports">
+                        {% get_countries as countries %}
+                        {% for country in countries %}
+                            <option value="{{country.name}}">{{country.name}}</option>
+                            {% endfor %}
+
+
+                      </select>
+                    </datalist>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="destination_airport">Destination Country</label>
+                <input required type="text" class="form-control" name="destination_airport" id="airport" list="airport-list" value="{% if destination_airport %}{{destination_airport}}{% endif %}"/>
+                    <datalist id="airport-list">
+                        {% get_countries as countries %}
+                        {% for country in countries %}
+                            <option value="{{country.name}}">{{country.name}}</option>
+                        {% endfor %}
+                      </select>
+                    </datalist>
+              </div>
+              <div class="form-group col-md-3">
+                <label required for="departure">Departure Date</label>
+                <input type="date" class="form-control" id="departure" name='departure_date' value="{% if departure_date %}{{departure_date}}{% endif %}">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="destination">Destination Date</label>
+                <input required type="date" class="form-control" name='arrival_date' value="{% if arrival_date %}{{arrival_date}}{% endif %}">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+        <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th scope="col" >Aeroplane</th>
+                <th scope="col">Departure</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Price</th>
+                <th scope="col">Departure Date</th>
+                <th scope="col">Hours taken</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for flight in flights %}
+                
+              <tr>
+                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.aeroplane}}</a></td>
+                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure|title}}</a></td>
+                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.destination|title}}</a></td>
+                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.price}}</a></td>
+                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure_datetime}}</a></td>
+                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.duration}}</a></td>
+                
+              </tr>
+
+              {% empty %}
+                <h3 class="text-center">Oops! No record found.</h3>
+              {% endfor %}
+            </tbody>
+
+        </table>
+
+{% endblock content %}
+
+

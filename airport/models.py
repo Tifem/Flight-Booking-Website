@@ -9,7 +9,7 @@ class Airport(models.Model):
 
 
     def __str__(self):
-        return "{} - ({})".format(self.name, self.airport_code)
+        return "{}".format(self.name)
     
     def save(self, *args, **kwargs):
         name_list = self.name.split()
@@ -20,3 +20,7 @@ class Airport(models.Model):
             self.airport_code 
 
         super(Airport, self).save(*args, **kwargs)
+
+    
+    class Meta:
+        ordering = ['name']

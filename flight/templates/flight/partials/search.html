@@ -1,0 +1,76 @@
+{% load static %}
+<section>
+    <!--for demo wrap-->
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>Aeroplane</th>
+			<th>Departure</th>
+			<th>Destination</th>
+			<th>Price</th>
+			<th>Departure Date</th>
+			<th>Hours taken</th>            
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content" {% if not flights %}style="height:auto !important "{% endif %}>
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+			{% for flight in flights %}
+			 
+			<tr>
+			  <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.aeroplane}}</a></td>
+			  <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure|title}}</a></td>
+			  <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.destination|title}}</a></td>
+			  <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.price}}</a></td>
+			  <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure_datetime}}</a>
+			  <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.duration}}</a></td>
+			  {% empty %}
+			  <td colspan="6" class="text-center">Oops! Nothing here!</td>
+			  
+			</tr>
+			{% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+{% comment %} <table class="table"> {% endcomment %}
+	{% comment %} <thead> {% endcomment %}
+	  {% comment %} <tr> {% endcomment %}
+		{% comment %} <th>Aeroplane</th> {% endcomment %}
+		{% comment %} <th>Departure</th> {% endcomment %}
+		{% comment %} <th>Destination</th> {% endcomment %}
+		{% comment %} <th>Price</th> {% endcomment %}
+		{% comment %} <th>Departure Date</th> {% endcomment %}
+		{% comment %} <th>Hours taken</th> {% endcomment %}
+	  {% comment %} </tr> {% endcomment %}
+	{% comment %} </thead> {% endcomment %}
+	{% comment %} <tbody> {% endcomment %}
+		{% comment %} {% for flight in flights %} {% endcomment %}
+{% comment %} 				  {% endcomment %}
+	  {% comment %} <tr> {% endcomment %}
+		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.aeroplane}}</a></td> {% endcomment %}
+		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure|title}}</a></td> {% endcomment %}
+		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.destination|title}}</a></td> {% endcomment %}
+		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.price}}</a></td> {% endcomment %}
+		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure_datetime}}</a> {% endcomment %}
+		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.duration}}</a></td> {% endcomment %}
+{% comment %}  {% endcomment %}
+        {% comment %} {% empty %} {% endcomment %}
+        {% comment %} <td colspan="6" class="text-center">Oops! Nothing here!</td> {% endcomment %}
+{% comment %}          {% endcomment %}
+	  {% comment %} </tr> {% endcomment %}
+	  {% comment %} {% endfor %} {% endcomment %}
+	{% comment %} </tbody> {% endcomment %}
+{% comment %} </table> {% endcomment %}
+{% if request.htmx %}
+	{% if flights %}
+	<a href="{% url 'flight:flight-search' %}?departure_airport={{departure_airport}}
+	&destination_airport={{destination_airport}}&departure_date={% if departure_date %}{{departure_date}}{% endif %}
+	&arrival_date={{arrival_date}}" style="color:#565a5c; margin-top:10px; font-weight: 700">
+	View more</a>
+	{% endif %}
+{% endif %}

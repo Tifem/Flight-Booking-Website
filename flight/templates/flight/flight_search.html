@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load countries %}
+{% block title %}Flight Search{% endblock title %}
+
+
+{% block content %}
+<section id="home" class="about-us">
+	<div class="container">
+		<div class="about-us-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="single-about-us">
+						<div class="about-us-txt">
+							<h2>
+								Flights
+							</h2>
+							{% comment %} <div class="about-btn"> {% endcomment %}
+								{% comment %} <button  class="about-view"> {% endcomment %}
+									{% comment %} explore now {% endcomment %}
+								{% comment %} </button> {% endcomment %}
+							{% comment %} </div><!--/.about-btn--> {% endcomment %}
+						</div><!--/.about-us-txt-->
+					</div><!--/.single-about-us-->
+				</div><!--/.col-->
+				<div class="col-sm-0">
+					<div class="single-about-us">
+						
+					</div><!--/.single-about-us-->
+				</div><!--/.col-->
+			</div><!--/.row-->
+		</div><!--/.about-us-content-->
+	</div><!--/.container-->
+</section><!--/.about-us-->
+<section  class="travel-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="single-travel-boxes">
+					<div id="desc-tabs" class="desc-tabs">
+						<ul class="nav nav-tabs" role="tablist">
+							{% comment %} <li role="presentation" class="active"> {% endcomment %}
+							 	{% comment %} <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab"> {% endcomment %}
+							 		{% comment %} <i class="fa fa-tree"></i> {% endcomment %}
+							 		{% comment %} tours {% endcomment %}
+							 	{% comment %} </a> {% endcomment %}
+							{% comment %} </li> {% endcomment %}
+							{% comment %} <li role="presentation"> {% endcomment %}
+								{% comment %} <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab"> {% endcomment %}
+									{% comment %} <i class="fa fa-building"></i> {% endcomment %}
+									{% comment %} hotels {% endcomment %}
+								{% comment %} </a> {% endcomment %}
+							{% comment %} </li> {% endcomment %}
+							<li role="presentation">
+							 	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">
+							 		<i class="fa fa-plane"></i>
+							 		flights
+							 	</a>
+							</li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active fade in" id="flights">
+								<div class="tab-para">
+                  					<form method="get">
+									  <div class="row">
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>from</h2>
+									  			<div class="travel-select-icon">
+                            				<input type="text" placeholder="enter your location" class="form-control" 
+											name="departure_airport" id="departure_airport" list="airport-list" 
+											value="{% if departure_airport %}{{departure_airport}}{% endif %}"
+                                            hx-get="" 
+                                            hx-trigger="keyup changed delay:500ms"
+                                            hx-target="#search-results" 
+                                            hx-indicator=".htmx-indicator" hx-include="#destination_airport, #departure_date, #destination_date"/>
+
+                            				<datalist id="airport-list">
+                            				  <select id="airports" class="form-control">
+                            				    {% get_countries as countries %}
+                            				    {% for country in countries %}
+                            				        <option value="{{country.name}}">{{country.name}}</option>
+                            				        {% endfor %}
+                            				  </select>
+                            				</datalist>
+									  			</div><!-- /.travel-select-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>departure</h2>
+									  			<div class="travel-check-icon">
+									  			    <input type="text" class="form-control" data-toggle="datepicker" id='departure_date'  name='departure_date' value="{% if departure_date %}{{departure_date}}{% endif %}" placeholder="YYYY-MM-DD" style="text-transform:none;"
+                                                    hx-get="" hx-trigger="keyup changed delay:500ms, mouseenter" hx-target="#search-results" hx-indicator=".htmx-indicator" hx-include="#destination_airport, #departure_airport, #destination_date">
+									  			</div><!-- /.travel-check-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>Destination</h2>
+									  			<div class="travel-check-icon">
+									  					<input type="text" class="form-control" id="destination_date" data-toggle="datepicker" name='arrival_date' value="{% if arrival_date %}{{arrival_date}}{% endif %}" placeholder="YYYY-MM-DD" style="text-transform:none;"
+														  hx-get="" hx-trigger="keyup changed delay:500ms, mouseenter" hx-target="#search-results" hx-indicator=".htmx-indicator" 
+														  hx-include="#destination_airport, #departure_airport, #departure_date">
+									  			</div><!-- /.travel-check-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  </div><!--/.row-->
+									  <div class="row">
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>to</h2>
+									  			<div class="travel-select-icon">
+                                                    <input type="text" placeholder="enter your location" class="form-control" 
+                                                    name="destination_airport" id="destination_airport" list="airport-list" 
+                                                    value="{% if destination_airport %}{{destination_airport}}{% endif %}"
+                                                    hx-get="" 
+                                                    hx-trigger="keyup changed delay:500ms"
+                                                    hx-target="#search-results" 
+                                                    hx-indicator=".htmx-indicator" hx-include="#departure_airport, #departure_date, #destination_date"/>
+                                  				<datalist id="airport-list">
+                                  				    {% get_countries as countries %}
+                                  				    {% for country in countries %}
+                                  				        <option value="{{country.name}}">{{country.name}}</option>
+                                  				    {% endfor %}
+                                  				  </select>
+                                  				</datalist>
+									  			</div><!-- /.travel-select-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  	<div class="clo-sm-5">
+									  		<div class="about-btn pull-right">
+									  			<button  class="about-view travel-btn">
+									  				search	
+									  			</button><!--/.travel-btn-->
+									  		</div><!--/.about-btn-->
+									  	</div><!--/.col-->
+                    
+									</div><!--/.row-->
+
+                  				</form>
+								  <h3 class='text-center'> 
+									<span class="htmx-indicator"> 
+									  <img src="{% static 'assets/images/bars.svg' %}" style="height:40px !important" />
+									 </span> 
+								  </h3>
+
+								  <div id="search-results">
+                                    {% if not request.htmx %}
+									    {% include 'flight/partials/search.html' %}
+                                    {% endif %}
+								  </div>
+									
+								</div>
+							</div><!--/.tabpannel-->
+						</div><!--/.tab content-->
+					</div><!--/.desc-tabs-->
+				</div><!--/.single-travel-box-->
+			</div><!--/.col-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</section><!--/.travel-box-->
+
+{% include 'partials/footer.html' %}
+{% endblock content %}
+

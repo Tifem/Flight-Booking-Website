@@ -1,8 +1,10 @@
 from django.urls import path
-from . import views
+from flight import views
 
 app_name = 'flight'
 
 urlpatterns = [
-    path('<int:pk>/', views.flight_detail, name='flight-detail')
+
+    path('search/', views.flight_search, name='flight-search'),
+    path('<int:pk>/', views.flight_detail, name='flight-detail'),
 ]

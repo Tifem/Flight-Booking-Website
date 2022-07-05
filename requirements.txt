@@ -3,6 +3,7 @@ backports.zoneinfo==0.2.1
 Django==4.0.5
 django-countries==7.3.2
 django-filter==22.1
+django-htmx==1.12.0
 Faker==13.14.0
 python-dateutil==2.8.2
 six==1.16.0

@@ -1,80 +1,174 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load countries %}
 {% block title %}Home{% endblock title %}
 
 {% block content %}
 
-    <h3>Hello</h3>
-    <form action="" method='GET'>
+<section id="home" class="about-us">
+	<div class="container">
+		<div class="about-us-content">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="single-about-us">
+						<div class="about-us-txt">
+							<h2>
+								Explore the Beauty of the Beautiful World 
+							</h2>
+							<div class="about-btn">
+								<button  class="about-view">
+									explore now
+								</button>
+							</div><!--/.about-btn-->
+						</div><!--/.about-us-txt-->
+					</div><!--/.single-about-us-->
+				</div><!--/.col-->
+				<div class="col-sm-0">
+					<div class="single-about-us">
+						
+					</div><!--/.single-about-us-->
+				</div><!--/.col-->
+			</div><!--/.row-->
+		</div><!--/.about-us-content-->
+	</div><!--/.container-->
+</section><!--/.about-us-->
+<!--about-us end -->
+<!--travel-box start-->
+<section  class="travel-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="single-travel-boxes">
+					<div id="desc-tabs" class="desc-tabs">
+						<ul class="nav nav-tabs" role="tablist">
+							{% comment %} <li role="presentation" class="active"> {% endcomment %}
+							 	{% comment %} <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab"> {% endcomment %}
+							 		{% comment %} <i class="fa fa-tree"></i> {% endcomment %}
+							 		{% comment %} tours {% endcomment %}
+							 	{% comment %} </a> {% endcomment %}
+							{% comment %} </li> {% endcomment %}
+							{% comment %} <li role="presentation"> {% endcomment %}
+								{% comment %} <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab"> {% endcomment %}
+									{% comment %} <i class="fa fa-building"></i> {% endcomment %}
+									{% comment %} hotels {% endcomment %}
+								{% comment %} </a> {% endcomment %}
+							{% comment %} </li> {% endcomment %}
+							<li role="presentation">
+							 	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">
+							 		<i class="fa fa-plane"></i>
+							 		flights
+							 	</a>
+							</li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active fade in" id="flights">
+								<div class="tab-para">
+                  					<form action="{% url 'flight:flight-search' %}" method="get">
+									  <div class="row">
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>from</h2>
+									  			<div class="travel-select-icon">
+                            				<input type="text" placeholder="enter your location" class="form-control" 
+											name="departure_airport" id="departure_airport" list="airport-list" 
+											value="{% if departure_airport %}{{departure_airport}}{% endif %}" 
+											hx-get="" 
+											hx-trigger="keyup changed delay:500ms"
+											hx-target="#search-results" 
+											hx-indicator=".htmx-indicator" hx-include="#destination_airport, #departure_date, #destination_date"/>
 
-            <div class="form-row">
-              <div class="form-group col-md-3">
-                <label for="departure_airport">Departure Country</label>
-                <input required type="text" class="form-control" name="departure_airport" id="airport" list="airport-list" value="{% if departure_airport %}{{departure_airport}}{% endif %}"/>
-                    <datalist id="airport-list">
-                      <select id="airports">
-                        {% get_countries as countries %}
-                        {% for country in countries %}
-                            <option value="{{country.name}}">{{country.name}}</option>
-                            {% endfor %}
+                            				<datalist id="airport-list">
+                            				  <select id="airports" class="form-control">
+                            				    {% get_countries as countries %}
+                            				    {% for country in countries %}
+                            				        <option value="{{country.name}}">{{country.name}}</option>
+                            				        {% endfor %}
+                            				  </select>
+                            				</datalist>
+									  			</div><!-- /.travel-select-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>departure</h2>
+									  			<div class="travel-check-icon">
+									  					<input type="text" class="form-control" data-toggle="datepicker" name='departure_date' value="{% if departure_date %}{{departure_date}}{% endif %}" placeholder="YYYY-MM-DD" style="text-transform:none;"
+														  hx-get="" hx-trigger="keyup changed delay:500ms, mouseenter" hx-target="#search-results" hx-indicator=".htmx-indicator" 
+														  hx-include="#destination_airport, #departure_airport, #destination_date">
+									  			</div><!-- /.travel-check-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>Destination</h2>
+									  			<div class="travel-check-icon">
+									  					<input type="text" class="form-control" data-toggle="datepicker" id="destination_date" name='arrival_date' value="{% if arrival_date %}{{arrival_date}}{% endif %}" placeholder="YYYY-MM-DD" style="text-transform:none;"
+														  hx-get="" hx-trigger="keyup changed delay:500ms, mouseenter" hx-target="#search-results" hx-indicator=".htmx-indicator" 
+														  hx-include="#destination_airport, #departure_airport, #departure_date">
+									  			</div><!-- /.travel-check-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  </div><!--/.row-->
+									  <div class="row">
+									  	<div class="col-lg-4 col-md-4 col-sm-12">
+									  		<div class="single-tab-select-box">
+									  			<h2>to</h2>
+									  			<div class="travel-select-icon">
+									  				<input type="text" placeholder="enter your destination"class="form-control" name="destination_airport" id="destination_airport" list="airport-list" value="{% if destination_airport %}{{destination_airport}}{% endif %}"
+													  hx-get="" 
+													  hx-trigger="keyup changed delay:500ms"
+													  hx-target="#search-results" 
+													  hx-indicator=".htmx-indicator" hx-include="#departure_airport, #departure_date, #destination_date"/>
+                                  				<datalist id="airport-list">
+                                  				    {% get_countries as countries %}
+                                  				    {% for country in countries %}
+                                  				        <option value="{{country.name}}">{{country.name}}</option>
+                                  				    {% endfor %}
+                                  				  </select>
+                                  				</datalist>
+									  			</div><!-- /.travel-select-icon -->
+									  		</div><!--/.single-tab-select-box-->
+									  	</div><!--/.col-->
+									  	<div class="clo-sm-5">
+									  		<div class="about-btn pull-right">
+									  			<button  class="about-view travel-btn">
+									  				search	
+									  			</button><!--/.travel-btn-->
+									  		</div><!--/.about-btn-->
+									  	</div><!--/.col-->
+                    
+									</div><!--/.row-->
 
+                  				</form>
+								  <h3 class='text-center'>
+									<span class="htmx-indicator"> 
+									  <img src="{% static 'assets/images/bars.svg' %}" style="height:40px !important" />
+									 </span> 
+								 </h3>
+								  <div id="search-results">
+									
+									
+									
+								
+									
+								  </div>
+									
+								</div>
+							</div><!--/.tabpannel-->
+						</div><!--/.tab content-->
+					</div><!--/.desc-tabs-->
+				</div><!--/.single-travel-box-->
+			</div><!--/.col-->
+		</div><!--/.row-->
+	</div><!--/.container-->
+</section><!--/.travel-box-->
 
-                      </select>
-                    </datalist>
-              </div>
-              <div class="form-group col-md-3">
-                <label for="destination_airport">Destination Country</label>
-                <input required type="text" class="form-control" name="destination_airport" id="airport" list="airport-list" value="{% if destination_airport %}{{destination_airport}}{% endif %}"/>
-                    <datalist id="airport-list">
-                        {% get_countries as countries %}
-                        {% for country in countries %}
-                            <option value="{{country.name}}">{{country.name}}</option>
-                        {% endfor %}
-                      </select>
-                    </datalist>
-              </div>
-              <div class="form-group col-md-3">
-                <label required for="departure">Departure Date</label>
-                <input type="date" class="form-control" id="departure" name='departure_date' value="{% if departure_date %}{{departure_date}}{% endif %}">
-              </div>
-              <div class="form-group col-md-3">
-                <label for="destination">Destination Date</label>
-                <input required type="date" class="form-control" name='arrival_date' value="{% if arrival_date %}{{arrival_date}}{% endif %}">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+{% include 'partials/services.html' %}
+{% include 'partials/testimonials.html' %}
+{% include 'partials/newsletter.html' %}
+{% include 'partials/footer.html' %}
 
-        <table class="table table-dark table-hover">
-            <thead>
-              <tr>
-                <th scope="col" >Aeroplane</th>
-                <th scope="col">Departure</th>
-                <th scope="col">Destination</th>
-                <th scope="col">Price</th>
-                <th scope="col">Departure Date</th>
-                <th scope="col">Hours taken</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for flight in flights %}
-                
-              <tr>
-                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.aeroplane}}</a></td>
-                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure|title}}</a></td>
-                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.destination|title}}</a></td>
-                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.price}}</a></td>
-                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure_datetime}}</a></td>
-                <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.duration}}</a></td>
-                
-              </tr>
-
-              {% empty %}
-                <h3 class="text-center">Oops! No record found.</h3>
-              {% endfor %}
-            </tbody>
-
-        </table>
 
 {% endblock content %}
 

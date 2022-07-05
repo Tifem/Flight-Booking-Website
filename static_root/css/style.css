@@ -1,18 +1,7 @@
-.custom-btn{
-    width: 200px; 
-    border-radius: 0 !important;
-    font-weight: 700;
+.container{
+    max-width: 1300px !important;
 }
 
-/* ul li{ */
-    /* font-size:20; */
-    /* margin-left: 10px */
-/* } */
-
-.form-group label{
-    font-weight: 600;
-}
-
-label .asteriskField{
-    color: rgb(231, 42, 42);
+tr td a{
+    color:#fff !important;
 }

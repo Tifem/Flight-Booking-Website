@@ -83,7 +83,7 @@ span .empty-search{
   
   tbody tr:hover{
     cursor:pointer;
-    background-color: rgba(77,78,84,1);
+    background-color: rgb(54, 54, 56);
   }
   
   /* demo styles */

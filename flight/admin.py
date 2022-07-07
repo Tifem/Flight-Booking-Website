@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-from .models import Flight
+from .models import Flight, Subscription
 
 # Register your models here.
 class FlightAdmin(admin.ModelAdmin):
@@ -18,4 +18,8 @@ class FlightAdmin(admin.ModelAdmin):
 admin.site.site_header = 'BookFlight Administration'
 admin.site.site_title = 'BookFlight Admin'
 admin.site.index_title = 'Manage BookFlight'
+
+
+
+admin.site.register(Subscription)
 admin.site.register(Flight, FlightAdmin)

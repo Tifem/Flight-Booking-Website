@@ -38,11 +38,13 @@
   <section  class="travel-box" style="margin-top:40px">
     <div class="container">
       <div class="row">
-            <div class="col-sm-4" style="overflow-y:scroll !important; height:500px ">
+            <div class="col-sm-6" style="overflow-y:scroll !important; height:500px ">
               <table class="table">
                 <thead>
                   <tr>
+                    <th style="font-weight: bold !important">#</th>
                     <th style="font-weight: bold !important">Passenger</th>
+                    <th style="font-weight: bold !important">Ticket Price</th>
                     {% comment %} <th scope="col">Price</th> {% endcomment %}
                   </tr>
                 </thead>
@@ -50,7 +52,9 @@
                   {% for booking in bookings %}
                   {% for passenger in booking.passengers.all %}
                   <tr>
+                    <td>{{forloop.counter}}</td>
                     <td>{{passenger}}</td>
+                    <td>{{price}}</td>
                     {% endfor %}        
                   </tr>
                   {% endfor %}  
@@ -58,7 +62,7 @@
               </table>
             </div>
             
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <h2 style="color: #565a5c;">Total Money spent</h2>
                 <h3 style="color: #565a5c; margin-top: 10px">N{{total_money}}</h3>
             </div>

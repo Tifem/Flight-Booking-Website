@@ -1,9 +1,12 @@
 from urllib.request import Request
 from django.shortcuts import render
-from flight.models import Flight
+from flight.models import Flight, Subscription
 from airport.models import Airport
 from django.utils import timezone
 from django.http import Http404, HttpResponse
+from django.conf import settings
+from django.contrib import messages
+from django.core.mail import send_mail
 
 
 
@@ -15,6 +18,23 @@ def landing_page(request):
     destination_airport = request.GET.get('destination_airport')
     departure_date = request.GET.get('departure_date')
     arrival_date = request.GET.get('arrival_date')
+
+    if request.method == 'POST':
+
+        try:
+            email = request.POST['email']
+            subscribe = Subscription(email=email)
+            subscribe.full_clean()
+            subscribe.save()
+
+            messages.success(request, 'You have successfully subscribe to our newsletter')
+            send_mail(subject='Welcome to BookFlight', 
+                message='You have successfully subscribe to our newsletter champ!', 
+                from_email=settings.EMAIL_HOST_USER, 
+                    recipient_list=[email, 'boluwatifejanet7@gmail.com', 'ibukunolaifa225@gmail.com'], fail_silently=False)  
+        except:
+           messages.error(request, 'Oops you have already subscribe to our newsletter')
+
 
     def is_validparam(param):
         return param != '' and param is not None

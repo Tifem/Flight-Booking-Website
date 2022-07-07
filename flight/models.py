@@ -35,3 +35,12 @@ class Flight(models.Model):
 
     class Meta:
         ordering = ['aeroplane','departure_datetime']
+
+
+class Subscription(models.Model):
+    email = models.EmailField(unique=True)
+
+
+    def __str__(self):
+        return self.email
+    

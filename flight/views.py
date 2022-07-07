@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Flight
+from .models import Flight, Subscription
 from airport.models import Airport
 from django.utils import timezone
 from django.http import HttpResponse, HttpResponseRedirect
@@ -66,7 +66,6 @@ def flight_search(request):
         else:
             return HttpResponse('')
    
-   
 
     return render(request, template, context=context)
 
@@ -85,6 +84,7 @@ def flight_detail(request, pk):
         'flight':flight,
         'bookings':bookings,
         'total_money':total_money,
+        'price':price,
     }
 
     return render(request, 'flight/flight_detail.html', context)

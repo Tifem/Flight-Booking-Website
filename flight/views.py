@@ -19,11 +19,9 @@ def flight_search(request):
 
 
     if is_validparam(departure_airport):
-        # flights = flights.filter(departure_datetime__gte=timezone.now(), departure__country__startswith=departure_airport)
-        flights = flights.filter(departure__country__istartswith=departure_airport)
-
+        flights = flights.filter(departure_datetime__gte=timezone.now(), departure__country__istartswith=departure_airport)
     if is_validparam(destination_airport):
-        flights = flights.filter(destination__country__istartswith=destination_airport)
+        flights = flights.filter(departure_datetime__gte=timezone.now(), destination__country__istartswith=destination_airport)
 
     if is_validparam(departure_date):
         flights = flights.filter(departure_datetime__gte=departure_date)
@@ -48,15 +46,10 @@ def flight_search(request):
         arrival_date = request.GET.get('arrival_date')
 
         if is_validparam(departure_airport):
-            # flights = flights.filter(departure_datetime__gte=timezone.now(), departure__country__startswith=departure_airport)
-            flights = flights.filter(departure__country__istartswith=departure_airport)
+            flights = flights.filter(departure_datetime__gte=timezone.now(), departure__country__istartswith=departure_airport)
 
         elif is_validparam(destination_airport):
-            # flights = flights.filter(departure_datetime__gte=timezone.now(), destination__country__name=destination_airport)
-
-            flights = flights.filter(destination__country__istartswith=destination_airport)
-        # else:
-            # return HttpResponse('')
+            flights = flights.filter(departure_datetime__gte=timezone.now(),destination__country__istartswith=destination_airport)
         elif is_validparam(departure_date):
             flights = flights.filter(departure_datetime__gte=departure_date)
 

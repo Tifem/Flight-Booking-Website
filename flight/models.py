@@ -21,10 +21,8 @@ class Flight(models.Model):
     @property
     def duration(self):
         duration_difference = self.arrival_datetime - self.departure_datetime
-        to_hour = 24
         hours = round(duration_difference.total_seconds() / 3600)
 
-        # print('Time(Hours) taken to arrive to destination is {} hours'.format(hours))
         return f"{hours} hours"
 
 

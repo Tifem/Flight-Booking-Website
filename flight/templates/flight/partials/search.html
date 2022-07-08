@@ -1,6 +1,6 @@
 {% load static %}
+{% url 'landing_page' as path_to_landing_page%}
 <section>
-    <!--for demo wrap-->
     <div class="tbl-header">
       <table cellpadding="0" cellspacing="0" border="0">
         <thead>
@@ -37,35 +37,7 @@
     </div>
   </section>
 
-{% comment %} <table class="table"> {% endcomment %}
-	{% comment %} <thead> {% endcomment %}
-	  {% comment %} <tr> {% endcomment %}
-		{% comment %} <th>Aeroplane</th> {% endcomment %}
-		{% comment %} <th>Departure</th> {% endcomment %}
-		{% comment %} <th>Destination</th> {% endcomment %}
-		{% comment %} <th>Price</th> {% endcomment %}
-		{% comment %} <th>Departure Date</th> {% endcomment %}
-		{% comment %} <th>Hours taken</th> {% endcomment %}
-	  {% comment %} </tr> {% endcomment %}
-	{% comment %} </thead> {% endcomment %}
-	{% comment %} <tbody> {% endcomment %}
-		{% comment %} {% for flight in flights %} {% endcomment %}
-{% comment %} 				  {% endcomment %}
-	  {% comment %} <tr> {% endcomment %}
-		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.aeroplane}}</a></td> {% endcomment %}
-		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure|title}}</a></td> {% endcomment %}
-		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.destination|title}}</a></td> {% endcomment %}
-		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.price}}</a></td> {% endcomment %}
-		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.departure_datetime}}</a> {% endcomment %}
-		{% comment %} <td><a href="{% url 'flight:flight-detail' flight.pk %}">{{flight.duration}}</a></td> {% endcomment %}
-{% comment %}  {% endcomment %}
-        {% comment %} {% empty %} {% endcomment %}
-        {% comment %} <td colspan="6" class="text-center">Oops! Nothing here!</td> {% endcomment %}
-{% comment %}          {% endcomment %}
-	  {% comment %} </tr> {% endcomment %}
-	  {% comment %} {% endfor %} {% endcomment %}
-	{% comment %} </tbody> {% endcomment %}
-{% comment %} </table> {% endcomment %}
+{% if request.path == path_to_landing_page %}
 {% if request.htmx %}
 	{% if flights %}
 	<a href="{% url 'flight:flight-search' %}?departure_airport={{departure_airport}}
@@ -73,4 +45,5 @@
 	&arrival_date={{arrival_date}}" style="color:#565a5c; margin-top:10px; font-weight: 700">
 	View more</a>
 	{% endif %}
+{% endif %}
 {% endif %}

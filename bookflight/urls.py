@@ -21,9 +21,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('airport/', include('airport.urls', namespace='airport')),
     path('', views.landing_page, name='landing_page'),
-    path('flight/', include('flight.urls', namespace='flight'))
+    path('flight/', include('flight.urls', namespace='flight')),
+    path('i18n/', include('django.conf.urls.i18n')),
+
 ]
 
 if settings.DEBUG:

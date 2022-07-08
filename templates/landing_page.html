@@ -17,23 +17,21 @@
 							</h2>
 							<div class="about-btn">
 								<button  class="about-view">
-									explore now
+									Book now
 								</button>
-							</div><!--/.about-btn-->
-						</div><!--/.about-us-txt-->
-					</div><!--/.single-about-us-->
-				</div><!--/.col-->
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="col-sm-0">
 					<div class="single-about-us">
 						
-					</div><!--/.single-about-us-->
-				</div><!--/.col-->
-			</div><!--/.row-->
-		</div><!--/.about-us-content-->
-	</div><!--/.container-->
-</section><!--/.about-us-->
-<!--about-us end -->
-<!--travel-box start-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section  class="travel-box">
 	<div class="container">
 		<div class="row">
@@ -41,18 +39,6 @@
 				<div class="single-travel-boxes">
 					<div id="desc-tabs" class="desc-tabs">
 						<ul class="nav nav-tabs" role="tablist">
-							{% comment %} <li role="presentation" class="active"> {% endcomment %}
-							 	{% comment %} <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab"> {% endcomment %}
-							 		{% comment %} <i class="fa fa-tree"></i> {% endcomment %}
-							 		{% comment %} tours {% endcomment %}
-							 	{% comment %} </a> {% endcomment %}
-							{% comment %} </li> {% endcomment %}
-							{% comment %} <li role="presentation"> {% endcomment %}
-								{% comment %} <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab"> {% endcomment %}
-									{% comment %} <i class="fa fa-building"></i> {% endcomment %}
-									{% comment %} hotels {% endcomment %}
-								{% comment %} </a> {% endcomment %}
-							{% comment %} </li> {% endcomment %}
 							<li role="presentation">
 							 	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">
 							 		<i class="fa fa-plane"></i>
@@ -60,7 +46,7 @@
 							 	</a>
 							</li>
 						</ul>
-						<!-- Tab panes -->
+
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane active fade in" id="flights">
 								<div class="tab-para">
@@ -86,9 +72,9 @@
                             				        {% endfor %}
                             				  </select>
                             				</datalist>
-									  			</div><!-- /.travel-select-icon -->
-									  		</div><!--/.single-tab-select-box-->
-									  	</div><!--/.col-->
+									  			</div>
+									  		</div>
+									  	</div>
 									  	<div class="col-lg-4 col-md-4 col-sm-12">
 									  		<div class="single-tab-select-box">
 									  			<h2>departure</h2>
@@ -96,9 +82,9 @@
 									  					<input type="text" class="form-control" data-toggle="datepicker" name='departure_date' value="{% if departure_date %}{{departure_date}}{% endif %}" placeholder="YYYY-MM-DD" style="text-transform:none;"
 														  hx-get="" hx-trigger="keyup changed delay:500ms, mouseenter" hx-target="#search-results" hx-indicator=".htmx-indicator" 
 														  hx-include="#destination_airport, #departure_airport, #destination_date">
-									  			</div><!-- /.travel-check-icon -->
-									  		</div><!--/.single-tab-select-box-->
-									  	</div><!--/.col-->
+									  			</div>
+									  		</div>
+									  	</div>
 									  	<div class="col-lg-4 col-md-4 col-sm-12">
 									  		<div class="single-tab-select-box">
 									  			<h2>Destination</h2>
@@ -106,10 +92,10 @@
 									  					<input type="text" class="form-control" data-toggle="datepicker" id="destination_date" name='arrival_date' value="{% if arrival_date %}{{arrival_date}}{% endif %}" placeholder="YYYY-MM-DD" style="text-transform:none;"
 														  hx-get="" hx-trigger="keyup changed delay:500ms, mouseenter" hx-target="#search-results" hx-indicator=".htmx-indicator" 
 														  hx-include="#destination_airport, #departure_airport, #departure_date">
-									  			</div><!-- /.travel-check-icon -->
-									  		</div><!--/.single-tab-select-box-->
-									  	</div><!--/.col-->
-									  </div><!--/.row-->
+									  			</div>
+									  		</div>
+									  	</div>
+									  </div>
 									  <div class="row">
 									  	<div class="col-lg-4 col-md-4 col-sm-12">
 									  		<div class="single-tab-select-box">
@@ -127,18 +113,18 @@
                                   				    {% endfor %}
                                   				  </select>
                                   				</datalist>
-									  			</div><!-- /.travel-select-icon -->
-									  		</div><!--/.single-tab-select-box-->
-									  	</div><!--/.col-->
+									  			</div>
+									  		</div>
+									  	</div>
 									  	<div class="clo-sm-5">
 									  		<div class="about-btn pull-right">
 									  			<button  class="about-view travel-btn">
 									  				search	
-									  			</button><!--/.travel-btn-->
-									  		</div><!--/.about-btn-->
-									  	</div><!--/.col-->
+									  			</button>
+									  		</div>
+									  	</div>
                     
-									</div><!--/.row-->
+									</div>
 
                   				</form>
 								  <h3 class='text-center'>
@@ -151,18 +137,17 @@
 									
 									
 								
-									
+
 								  </div>
-									
 								</div>
-							</div><!--/.tabpannel-->
-						</div><!--/.tab content-->
-					</div><!--/.desc-tabs-->
-				</div><!--/.single-travel-box-->
-			</div><!--/.col-->
-		</div><!--/.row-->
-	</div><!--/.container-->
-</section><!--/.travel-box-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 {% include 'partials/services.html' %}
 {% include 'partials/testimonials.html' %}

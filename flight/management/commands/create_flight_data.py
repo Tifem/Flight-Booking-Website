@@ -94,7 +94,7 @@ class Command(BaseCommand):
                                             max_passengers=max_passengers, price=price)
 
                 passenger, _ = Passenger.objects.get_or_create(name=fake_passenger)
-                booking = Booking.objects.create(flight=flight, booking_datetime=booking_datetime)
+                booking, _ = Booking.objects.get_or_create(flight=flight, booking_datetime=booking_datetime)
                 for booking_passenger in Passenger.objects.all():
                     booking.passengers.add(booking_passenger)
-            self.stdout.write(self.style.SUCCESS('Data Imported Spuccessfully')) 
+            self.stdout.write(self.style.SUCCESS('Data Imported Successfully')) 

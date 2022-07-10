@@ -164,7 +164,7 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_USE_TLS = True  
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mailgun.org' 
 EMAIL_HOST_USER = 'postmaster@sandbox49e6f93a9ccd42478b2de532c27cfdb1.mailgun.org'   
 EMAIL_HOST_PASSWORD = 'ecd71b0f0009a0db8f01842bb1acd34b-1b8ced53-cd64f74f'  

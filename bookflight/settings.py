@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'airport',
     'booking',    
     'flight',
+    'anymail',
 
     # Thirty party libraries
     'django_countries',
@@ -147,23 +150,33 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+# 
+# ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    # "MAILGUN_API_KEY": "pubkey-f9d841e93bc623457b147e8d68ea6f1f",
+    # "MAILGUN_SENDER_DOMAIN": 'sandbox49e6f93a9ccd42478b2de532c27cfdb1.mailgun.org',  # your Mailgun domain, if needed
+#    " MAILGUN_API_URL":"https://api.us.mailgun.net/v3"
+# }
+# EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+# DEFAULT_FROM_EMAIL = "postmaster@sandbox49e6f93a9ccd42478b2de532c27cfdb1.mailgun.org"  # if you don't already have this in settings
+# SERVER_EMAIL = "your-server@example.com"  # ditto (default from-email for Django errors)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_USE_TLS = True  
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.zoho.eu' 
-EMAIL_HOST_USER = 'ibukunolaifa@zohomail.eu'   
-EMAIL_HOST_PASSWORD = 'Ibukun@123'  
-EMAIL_PORT = 587 
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org' 
+EMAIL_HOST_USER = 'postmaster@sandbox49e6f93a9ccd42478b2de532c27cfdb1.mailgun.org'   
+EMAIL_HOST_PASSWORD = 'ecd71b0f0009a0db8f01842bb1acd34b-1b8ced53-cd64f74f'  
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
 USE_I18N = True
-from django.utils.translation import gettext_lazy as _
+
 LANGUAGES = [
     ('de', _('German')),
     ('en', _('English')),
@@ -181,7 +194,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "BookFlight",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "assets/logo/logo1.png",
+    "site_logo": "assets/logo/R1.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
@@ -274,7 +287,7 @@ JAZZMIN_SETTINGS = {
     
     
     # Icons that are used when one is not manually specified
-    # "default_icon_parents": "fa-thin fa-plane-circle-check",
+    "default_icon_parents": "fa-thin fa-plane-circle-check",
     "default_icon_children": "fas fa-arrow-circle-right",
    
 

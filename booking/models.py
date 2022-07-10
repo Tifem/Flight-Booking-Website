@@ -31,4 +31,4 @@ class Booking(models.Model):
     
     
     class Meta:
-        ordering = ['reference_no']
+        ordering = ['flight__departure_datetime']

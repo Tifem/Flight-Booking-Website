@@ -1,4 +1,3 @@
-from urllib.request import Request
 from django.shortcuts import redirect, render
 from flight.models import Flight, Subscription
 from airport.models import Airport
@@ -27,7 +26,7 @@ def landing_page(request):
             send_mail(subject='Welcome to BookFlight', 
             message='You have successfully subscribe to our newsletter champ!', 
             from_email=settings.EMAIL_HOST_USER, 
-            recipient_list=[email, 'boluwatifejanet7@gmail.com', 'ibukunolaifa@gmail.com'], fail_silently=False)  
+            recipient_list=['email','boluwatifejanet7@gmail.com','ibukunolaifa@gmail.com'], fail_silently=False)  
 
             messages.success(request, 'You have successfully subscribe to our newsletter')
             return redirect('/')
